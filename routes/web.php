@@ -1,24 +1,25 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\TaskController;
+use App\Http\Middleware\ChangeLanguage;
+use App\Http\Controllers\LanguageController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+    Route::get('/', function () {
+        return view('welcome');
+    })->middleware(ChangeLanguage::class);
+    
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->middleware(['auth', 'verified','locale'])->name('dashboard');
+    
+    Route::middleware('auth')->group(function () {
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    })->middleware(ChangeLanguage::class);;
+    Route::get('lang/{lang}', [LanguageController::class,'changeLanguage'])->name('locale')->middleware(ChangeLanguage::class);
+    require __DIR__.'/auth.php';
 
-// Apply the CheckAdmin middleware to a specific route or group
-Route::middleware(['admin'])->group(function () {
-    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-    // Add other admin-only routes here
-});
 
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
-Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
-Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
-Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
-Route::resource('tasks', TaskController::class);

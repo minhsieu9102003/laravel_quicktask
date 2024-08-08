@@ -15,19 +15,9 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        if (!User::where('email', 'test@example.com')->exists()) {
-            User::factory()->create([
-                'first_name' => 'Test',
-                'last_name' => 'User',
-                'email' => 'test@example.com',
-                'is_admin' => false,
-                'is_active' => true,
-                'username' => 'testuser',
-            ]);
-        }
-
-        $this->call([
-            CreateInitialAdminAccount::class,
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
         ]);
     }
 }
