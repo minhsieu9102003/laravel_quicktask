@@ -21,6 +21,7 @@
                 <th>#</th>
                 <th>Name</th>
                 <th>Username</th>
+                <th>Tasks</th>
                 <th>Action</th>
             </tr>
             <tr>
@@ -32,10 +33,16 @@
     <td>{{$user->fullname}}</td>
     <td>{{$user->username}}</td>
     <td>
-
+        @foreach ($user->tasks as $task)
+        {{$task->name}}
+        @endforeach
+    </td>
+    <td>
+<a href="{{ route('users.edit', ['user'=>$user->id])}}">
         <x-primary-button>
             {{('Edit')}}
 </x-primary-button>
+</a>
 <x-primary-button>
             {{('Delete')}}
 </x-primary-button>
