@@ -4,12 +4,17 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+<<<<<<< HEAD
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Str;
+=======
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+>>>>>>> 0b13237f8b9a66532c5259167da06378c0ef33e3
 
 class User extends Authenticatable
 {
@@ -20,6 +25,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+<<<<<<< HEAD
     // protected $fillable = [
     //     'name',
     //     'email',
@@ -28,6 +34,14 @@ class User extends Authenticatable
     protected $guarded = [
         'is_admin'
     ];
+=======
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+>>>>>>> 0b13237f8b9a66532c5259167da06378c0ef33e3
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -37,6 +51,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+<<<<<<< HEAD
     public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);
@@ -59,6 +74,9 @@ class User extends Authenticatable
             set: fn ($value) => Str::slug($value),
         );
     }
+=======
+
+>>>>>>> 0b13237f8b9a66532c5259167da06378c0ef33e3
     /**
      * Get the attributes that should be cast.
      *

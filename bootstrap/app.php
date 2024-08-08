@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 /*
 |--------------------------------------------------------------------------
 | Create The Application
@@ -53,3 +54,22 @@ $app->singleton(
 */
 
 return $app;
+=======
+use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Configuration\Exceptions;
+use Illuminate\Foundation\Configuration\Middleware;
+use App\Http\Middleware\ChangeLanguage;
+
+return Application::configure(basePath: dirname(__DIR__))
+    ->withRouting(
+        web: __DIR__.'/../routes/web.php',
+        commands: __DIR__.'/../routes/console.php',
+        health: '/up',
+    )
+    ->withMiddleware(function (Middleware $middleware) {
+        $middleware->alias(['locale' => ChangeLanguage::class]);
+    })
+    ->withExceptions(function (Exceptions $exceptions) {
+        //
+    })->create();
+>>>>>>> 0b13237f8b9a66532c5259167da06378c0ef33e3
