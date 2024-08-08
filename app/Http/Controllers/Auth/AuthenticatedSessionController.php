@@ -4,10 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-<<<<<<< HEAD
 use App\Providers\RouteServiceProvider;
-=======
->>>>>>> 0b13237f8b9a66532c5259167da06378c0ef33e3
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,11 +29,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-<<<<<<< HEAD
         return redirect()->intended(RouteServiceProvider::HOME);
-=======
-        return redirect()->intended(route('dashboard', absolute: false));
->>>>>>> 0b13237f8b9a66532c5259167da06378c0ef33e3
     }
 
     /**

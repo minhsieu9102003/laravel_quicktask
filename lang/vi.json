@@ -1,10 +1,6 @@
 {
     "(and :count more error)": "(và :count lỗi khác)",
-<<<<<<< HEAD
     "(and :count more errors)": "(và :count lỗi khác)",
-=======
-    "(and :count more errors)": "(và :count lỗi khác)|(và :count lỗi khác)|(và :count lỗi khác)",
->>>>>>> 0b13237f8b9a66532c5259167da06378c0ef33e3
     "A new verification link has been sent to the email address you provided during registration.": "Một liên kết xác minh mới đã được gửi đến địa chỉ email được bạn cung cấp trong quá trình đăng ký.",
     "A new verification link has been sent to your email address.": "Một liên kết xác minh mới đã được gửi đến địa chỉ email của bạn.",
     "A Timeout Occurred": "Xảy Ra Thời Gian Chờ",
@@ -66,10 +62,6 @@
     "Edit": "Sửa",
     "Edit :name": "Chỉnh sửa :name",
     "Email": "Email",
-<<<<<<< HEAD
-=======
-    "email": "Trường :attribute phải là một địa chỉ email hợp lệ.",
->>>>>>> 0b13237f8b9a66532c5259167da06378c0ef33e3
     "Email Password Reset Link": "Email khôi phục mật khẩu",
     "Enable": "Kích hoạt",
     "Ensure your account is using a long, random password to stay secure.": "Đảm bảo tài khoản của bạn đang sử dụng mật khẩu dài, ngẫu nhiên để giữ an toàn.",
@@ -111,10 +103,6 @@
     "Introduction": "Giới thiệu",
     "Invalid JSON was returned from the route.": "JSON không hợp lệ đã được trả về từ tuyến đường.",
     "Invalid SSL Certificate": "Chứng Chỉ SSL Không Hợp Lệ",
-<<<<<<< HEAD
-=======
-    "length": "length",
->>>>>>> 0b13237f8b9a66532c5259167da06378c0ef33e3
     "Length Required": "Yêu Cầu Chiều Dài",
     "Like": "Giống",
     "Load": "Trọng tải",
@@ -134,10 +122,6 @@
     "Multi-Status": "Đa Trạng Thái",
     "Multiple Choices": "Nhiều Sự Lựa Chọn",
     "Name": "Tên",
-<<<<<<< HEAD
-=======
-    "name": "tên",
->>>>>>> 0b13237f8b9a66532c5259167da06378c0ef33e3
     "Network Authentication Required": "Yêu Cầu Xác Thực Mạng",
     "Network Connect Timeout Error": "Lỗi Quá Thời Gian Kết Nối Mạng",
     "Network Read Timeout Error": "Lỗi Hết Thời Gian Đọc Mạng",
@@ -167,10 +151,6 @@
     "Pagination Navigation": "Điều hướng phân trang",
     "Partial Content": "Nội Dung Một Phần",
     "Password": "Mật khẩu",
-<<<<<<< HEAD
-=======
-    "password": "Mật khẩu không đúng.",
->>>>>>> 0b13237f8b9a66532c5259167da06378c0ef33e3
     "Payload Too Large": "Tải Trọng Quá Lớn",
     "Payment Required": "yêu cầu thanh toán",
     "Permanent Redirect": "Chuyển Hướng Vĩnh Viễn",
