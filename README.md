@@ -1,66 +1,177 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+1.
+1.1 
+đối với windows hoặc mac có thể sử dụng herd, đối với linux có thể sử dụng composer
+ngoài ra cũng có thể install manual hoặc dùng docker
+1.2
+/app: bao gồm controller, models và các logic sử dụng trong ứng dụng
+/bootstrap: chứa file khởi chạy đầu tiên khi app chạy
+/config: configure các thông số của app 
+/database: chứa các factory, seeder, file migrate và file sqlite
+/resources: chứa code js, vue, css và blade template
+/routes: định nghĩa các route
+/storage: chứa dữ liệu về log, cache và sessions
+/tests: dùng trong testing
+/vendor: chứa các thư viện của composer
+file:
+develop và maintainance: .env, artisan, .editorconfig
+version control: .gitignore, .gitattributes
+composer: composer.json, composer.lock
+Tests: phpunit.xml
+Frontend: vite.config.js, package.json, package.lock
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+1.3
+public/index.php -> bootstrap/app.php -> HTTP kernel | console kernel 
+-> service providers -> routing -> response
 
-## About Laravel
+2.
+2.1
+Migration giống như một hình thức version control của database
+2.2 hàm up thường dùng để tạo bảng hoặc các operation mang tính 'khởi tạo',
+hàm down thường đảo nghịch các thao tác của hàm up để rollback mang tính hợp lí
+2.3 php artisan migrate , php artisan migrate:rollback , php artisan make:migration
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+2.4 mass assignment là khi bạn muốn thêm một lượng lớn dữ liệu vào database mà không ràng buộc
+trường nào được cho phép mass assign
+2.5 + 2.6: sử dụng $fillable và $guarded, $fillable là mảng chứa các trường được cho phép mass assign,
+$guarded chứa các trường không được phép mass assign, các trường không chứa trong $guarded 
+auto được hiểu là được phép mass assign
+2.7 blacklist không ngăn update dữ liệu mà chỉ ngăn update dữ liệu dạng mass assign, vì vậy có thể update như bình thường (ví dụ dùng tinker)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+3. 
+3.1 one - one: hasOne() >< belongsTo()
+one - many: hasMany() >< belongsTo()
+many -many: hasMany() >< belongsToMany()
 
-## Learning Laravel
+3.2 các hàm này đều thao tác lên bảng pivot của quan hệ many - many:
+attach: thêm record
+detach: xóa record
+sync và toggle: tham số truyền vào là 1 mảng
+sync: hòa hợp bảng với mảng đó (giữ lại các ID có trong mảng, còn lại xóa)
+toggle: các ID đã có trong mảng thì xóa, ID nào chưa có thì thêm
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3.3 có thể sử dụng DB::table('pivot_table_name')->get()->toArray();
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+4.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+4.1 Accessor có thể thao tác lên nhiều cột, áp dụng các phương thức linh hoạt để output ra format mong muốn
+Mutator thao tác lên dữ liệu, khiến cho dữ liệu input và dữ liệu được lưu trong cơ sở dữ liệu có sự sai khác
 
-## Laravel Sponsors
+4.2 
+định nghĩa accessor: 
+hàm 'get{AttributeName}Attribute($value)'
+định nghĩa mutator:
+hàm 'set{AttributeName}Attribute($value)'
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
+5.
+5.1
+seeder: khởi tạo record dữ liệu 
+factory định nghĩa cách mà một model được khởi tạo 
+faker library sử dụng để fake data 
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
+5.2
+seeder được sử dụng khi cần khởi tạo data để app có cơ sở để vận hành
+factory được sử dụng để tạo lượng lớn dữ liệu phục vụ mục đích testing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6. một route bao gồm:
 
-## Code of Conduct
+- định nghĩa phương thức: GET hay POST hay PUT hay DELETE
+- URL 
+- hàm controller 
+- tham số của route
+- (optional) route naming
+- (optional) middleware
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+index()
+phương thức GET
+công dụng: hiển thị danh sách record dữ liệu
+create()
+phương thức GET
+công dụng: hiển thị form tạo record mới
+store()
+phương thức POST
+công dụng: xử lý dữ liệu người dùng input 
+show()
+phương thức GET
+công dụng: hiển thị một record cụ thể (thường) dựa vào id
+edit()
+phương thức GET
+công dụng: hiển thị form update record dữ liệu
+update()
+phương thức PUT
+công dụng: xử lý dữ liệu người dùng update
+destroy()
+phương thức: DELETE
+công dụng: xóa record dữ liệu
 
-## Security Vulnerabilities
+7.
+7.1 middleware được truyền vào các route nhằm thực hiện một thao tác nào đó (authentication, authorization, error handling,...)
+trước khi thực hiện hàm controller đi kèm route
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+7.2
 
-## License
+global middleware: middleware thao tác trên mọi request http
+group middleware: middleware thao tác trên một nhóm các các tuyến khác nhau, ví dụ 'web' và 'api'
+route middleware: middlware thao tác trên một route cụ thể 
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+8. 
+8.1 breeze, jetstream, fortify, passport,sanctum
+8.2 em sử dụng breeze. đối với breeze, khi cần customize logic, cần vào folder Controllers/Auth
+tại đây chứa toàn bộ các thao tác chính đối với thao đăng kí đăng nhập đăng xuất
+
+10.
+10.1
+bower, npm có vai trò quản lý các dependencies và các thư viện, giúp chúng ta có thể cài đặt, cập nhật, gỡ cài đặt
+sao cho phù hợp với project
+
+10.2
+việc compile các file trên giúp tối ưu dung lượng mã nguồn do các khoảng trống được lược bỏ,
+ngoài ra còn có lợi ích về mặt thẩm mỹ do code nhìn gọn hơn, việc gộp nhiều file làm một còn có tác dụng tăng hiệu năng 
+ứng dụng, do ít request hơn 
+
+công cụ laravel dành cho việc này có thể kể đến laravel mix
+
+12.
+12.1
+eloquent orm và query builder giúp tương tác với cơ sở dữ liệu một cách mạnh mẽ mà không 
+cần viết truy vấn sql 
+eloquent: 
+mỗi bảng trong cơ sở dữ liệu tương ứng với một lớp model trong eloquent 
+query builder:
+query builder giúp xây dựng các truy vấn phức tạp dựa trên việc nối chuỗi
+
+12.2
+eloquent orm:
+ưu:
+- dễ đọc dễ sử dụng
+- hỗ trợ thiết lập các quan hệ one-one, one-many, many-many,...
+- hỗ trợ eager loading
+nhược: 
+- chậm hơn query builder (nếu dữ liệu lớn)
+query builder:
+ưu:
+- hiệu suất cao
+- phù hợp với truy vấn đơn giản
+nhược: 
+- ít thân thiện hơn
+12.3
+
+EO: khi cần một giải pháp dễ sử dụng, áp dụng khi hiệu suất không phải là vấn đề quan tâm hàng đầu
+QB: khi yêu cầu tối ưu hiệu suất, muốn sự linh hoạt trong truy vấn
+
+12.4 + 12.5
+
+Eager loading:, khi sử dụng eager loading, laravel thực hiện 
+một truy vấn sql bổ sung để lấy dữ liệu liên quan cùng lúc với dữ liệu chính
+
+eager loading sử dụng phương thức with(): được thực hiện khi đang thực hiện truy vấn,
+cho phép chỉ định các quan hệ cần nạp trước trước khi trả về kết quả 
+
+eager loading sử dụng phương thức load(): được thực hiện khi đã có kết quả truy vấn, giúp nạp thêm
+các quan hệ và không phải truy vấn lại model 
+
+Lazy loading, chỉ truy xuất dữ liệu liên quan khi ta cố gắng truy cập nó  
+
+
